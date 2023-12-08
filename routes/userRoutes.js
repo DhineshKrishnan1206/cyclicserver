@@ -25,9 +25,7 @@ router.post('/login', async (req, res) => {
   
 router.post('/users', upload.single('profileImage'), async (req, res) => {
   try {
-    const { username, email, password } = req.body;
-    const profileImage = req.file.buffer; // This should contain the uploaded image
-
+    const { username, email, password,profileImage } = req.body;
     const newUser = await User.create({ username, email, password, profileImage });
     
     return res.status(201).json({ status: true, userId: newUser._id });
